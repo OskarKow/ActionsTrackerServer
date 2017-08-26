@@ -7,19 +7,23 @@ package com.oskar.kow.ActionsTrackerServer.model;
 
 import java.util.List;
 import java.util.UUID;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  *
- * @author Oskar Kowalewski
+ * @author Lenovo
  */
 @Entity
 @EqualsAndHashCode(of = "id")
-@Table(name = "programs")
-public class Program {
+@Table(name = "channels")
+public class Channel {
     
     @Getter
     @Id
@@ -30,7 +34,7 @@ public class Program {
     @Column(nullable=false)
     String name;
     
-    @OneToMany(mappedBy = "program")
+    @OneToMany(mappedBy = "channel")
     List<Broadcast> broadcasts;
     
 }

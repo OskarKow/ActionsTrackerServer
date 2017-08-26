@@ -7,18 +7,46 @@ package com.oskar.kow.ActionsTrackerServer.model;
 
 import java.util.UUID;
 import javax.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
+import java.util.Date;
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 /**
  *
  * @author Oskar Kowalewski
  */
 @Entity
+@EqualsAndHashCode(of = "id")
 @Table(name = "broadcasts")
 public class Broadcast {
     
     @Getter
     @Id
     UUID id = UUID.randomUUID();
+    
+    @Getter
+    @Temporal(TIMESTAMP)
+    Date date;
+    
+    @Getter
+    @Setter
+    Integer hour;
+    
+    @Getter
+    @Setter
+    Integer minutes;
+    
+    //relation between channel and broadcast
+    @ManyToOne
+    Channel channel;
+    
+    //relation between program and broadcast
+    
+    @ManyToOne(optional = true)
+    Program program;
+    
+    
     
 }
