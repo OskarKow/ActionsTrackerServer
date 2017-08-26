@@ -28,15 +28,15 @@ public class Broadcast {
     
     @Getter
     @Temporal(TIMESTAMP)
-    Date date;
+    Date broadcastDate;
     
     @Getter
     @Setter
-    Integer hour;
+    Integer broadcastHour;
     
     @Getter
     @Setter
-    Integer minutes;
+    Integer broadcastMinutes;
     
     //relation between channel and broadcast
     @ManyToOne
