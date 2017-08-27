@@ -44,7 +44,7 @@ public class Broadcast {
     
     //relation between program and broadcast
     
-    @ManyToOne(optional = true)
+    @ManyToOne
     Program program;
     
     
