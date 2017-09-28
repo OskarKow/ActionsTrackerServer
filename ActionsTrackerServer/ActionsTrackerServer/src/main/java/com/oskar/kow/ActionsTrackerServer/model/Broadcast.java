@@ -24,11 +24,11 @@ public class Broadcast {
     
     @Getter
     @Id
-    UUID id = UUID.randomUUID();
+    UUID id;
     
     @Getter
-    @Temporal(TIMESTAMP)
-    Date broadcastDate;
+    @Setter
+    String broadcastDate;
     
     @Getter
     @Setter

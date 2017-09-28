@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.oskar.kow.ActionsTrackerServer.services;
 
 import java.util.UUID;
@@ -32,7 +28,6 @@ abstract public class EntityService<T> {
     }
     
     /**
-     * 
      * Method for saving new entities or updating existing ones.
      * 
      * @param entity 
@@ -56,7 +51,7 @@ abstract public class EntityService<T> {
      * @param id entity's is
      * @return found object or null if there is no object with this id
      */
-    public T find(UUID id)
+    public T findById(UUID id)
     {
         return em.find(entityClass, id);
     }

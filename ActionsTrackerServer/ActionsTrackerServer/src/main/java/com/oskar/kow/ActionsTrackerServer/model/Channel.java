@@ -5,6 +5,7 @@
  */
 package com.oskar.kow.ActionsTrackerServer.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ public class Channel {
     
     @Getter
     @Id
-    UUID id = UUID.randomUUID();
+    UUID id;
     
     @Getter
     @Setter
@@ -35,6 +36,6 @@ public class Channel {
     String name;
     
     @OneToMany(mappedBy = "channel")
-    List<Broadcast> broadcasts;
+    List<Broadcast> broadcasts = new ArrayList<>();
     
 }
