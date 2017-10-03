@@ -24,7 +24,7 @@ public class Program {
     
     @Getter
     @Id
-    UUID id;
+    UUID id = UUID.randomUUID();
     
     @Getter
     @Setter

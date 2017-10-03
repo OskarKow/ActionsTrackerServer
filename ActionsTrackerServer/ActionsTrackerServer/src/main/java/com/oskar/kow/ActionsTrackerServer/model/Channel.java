@@ -19,7 +19,7 @@ import lombok.Setter;
 
 /**
  *
- * @author Lenovo
+ * @author Oskar Kowalewski
  */
 @Entity
 @EqualsAndHashCode(of = "id")
@@ -28,7 +28,7 @@ public class Channel {
     
     @Getter
     @Id
-    UUID id;
+    UUID id = UUID.randomUUID();
     
     @Getter
     @Setter

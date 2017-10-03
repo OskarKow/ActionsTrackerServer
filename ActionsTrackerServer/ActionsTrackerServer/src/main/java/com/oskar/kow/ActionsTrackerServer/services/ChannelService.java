@@ -5,6 +5,8 @@ import com.oskar.kow.ActionsTrackerServer.model.Channel;
 import java.util.List;
 import java.util.function.Function;
 import javax.persistence.EntityManager;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -12,14 +14,15 @@ import javax.persistence.EntityManager;
  * 
  * Component with logic for Channels
  */
+@Service
 public class ChannelService extends EntityService<Channel>{
     
     /**
      * 
      * parameters injected by Spring framework
      */
-    public ChannelService(EntityManager em, Class<Channel> entityClass, Function<Channel, Object> idSupplier) {
-        super(em, entityClass, idSupplier);
+    public ChannelService(EntityManager em) {
+        super(em, Channel.class, Channel::getId);
     }
     
     /**
@@ -30,11 +33,24 @@ public class ChannelService extends EntityService<Channel>{
         return em.createQuery("SELECT c FROM Channel c", Channel.class).getResultList();
     }
     
+    /**
+     * 
+     * @param name Channel name
+     * @return list of channels with given name
+     */
     public List<Channel> findByName(String name)
     {
-        return em.createQuery("SELECT c FROM Channel c WHERE c.name LIKE chName")
+        return em.createQuery("SELECT c FROM Channel c WHERE c.name LIKE :chName")
                 .setParameter("chName", name)
                 .getResultList();
+    }
+    
+    
+    @Transactional
+    public void addChannel(Channel channel)
+    {
+        //no need to check for any conditions, we just add new channel to database
+        save(channel);
     }
     
 }
