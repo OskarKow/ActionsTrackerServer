@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.oskar.kow.ActionsTrackerServer.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 import javax.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.Date;
-import static javax.persistence.TemporalType.TIMESTAMP;
 
 /**
  *
@@ -24,7 +20,7 @@ public class Broadcast {
     
     @Getter
     @Id
-    UUID id;
+    UUID id = UUID.randomUUID();
     
     @Getter
     @Setter
@@ -40,12 +36,25 @@ public class Broadcast {
     
     //relation between channel and broadcast
     @ManyToOne
+    @Getter//(onMethod = @__( @JsonIgnore ))
+    @Setter
     Channel channel;
     
     //relation between program and broadcast
     
     @ManyToOne
+    @Getter//(onMethod = @__( @JsonIgnore ))
+    @Setter
     Program program;
+    
+    public Program testTheProgram()
+    {
+        return program;
+    }
+    public Channel testTheChannel()
+    {
+        return channel;
+    }
     
     
     

@@ -3,13 +3,17 @@ package com.oskar.kow.ActionsTrackerServer.controllers;
 
 import com.oskar.kow.ActionsTrackerServer.model.Program;
 import com.oskar.kow.ActionsTrackerServer.services.ProgramService;
+import java.net.URI;
 import java.util.List;
 import static java.util.Objects.isNull;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 /**
  *
@@ -48,5 +52,13 @@ public class ProgramController {
     public List<Program> findByName(@PathVariable String name)
     {
         return programService.getWithName(name);
+    }
+    
+    @PostMapping("/programs")
+    public ResponseEntity<Program> addProgram(@RequestBody Program program, UriComponentsBuilder uriBuilder)
+    {
+        programService.save(program);
+        URI location = uriBuilder.path("/programs/{id}").buildAndExpand(program.getId()).toUri();
+        return ResponseEntity.created(location).build();
     }
 }

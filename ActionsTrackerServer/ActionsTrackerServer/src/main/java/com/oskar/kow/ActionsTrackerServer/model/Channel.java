@@ -5,6 +5,7 @@
  */
 package com.oskar.kow.ActionsTrackerServer.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -36,6 +37,7 @@ public class Channel {
     String name;
     
     @OneToMany(mappedBy = "channel")
+    @Getter
     List<Broadcast> broadcasts = new ArrayList<>();
     
 }
