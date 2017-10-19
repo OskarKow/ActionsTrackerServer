@@ -1,6 +1,7 @@
 
 package com.oskar.kow.ActionsTrackerServer.services;
 
+import com.oskar.kow.ActionsTrackerServer.model.Broadcast;
 import com.oskar.kow.ActionsTrackerServer.model.Program;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +28,7 @@ public class ProgramService extends EntityService<Program>{
     
     public List<Program> getWithName(String name)
     {
-        return em.createQuery("SELECT p FROM p WHERE p.name LIKE :pName")
+        return em.createQuery("SELECT p FROM Program p WHERE p.name LIKE :pName")
                 .setParameter("pName", name)
                 .getResultList();
     }

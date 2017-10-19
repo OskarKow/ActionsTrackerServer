@@ -38,6 +38,18 @@ public class BroadcastService extends EntityService<Broadcast>{
         return em.createQuery("SELECT b FROM Broadcast b").getResultList();
     }
     
+    public List<Program> getProgramsFromChannel(Channel channel)
+    {
+        
+        return null;
+    }
+    
+    public Program getProgramFromChannel(Channel channel)
+    {
+        //Broadcast broadcast = em.createQuery("SELECT b FROM Broadcast b WHERE ")
+        return null;
+    }
+    
     /**
      * 
      * @param broadcast

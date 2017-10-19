@@ -73,4 +73,14 @@ public class Broadcast {
         //valid channel
         broadcastChannel.getBroadcasts().add(this);
     }
+    
+    public UUID getProgramId()
+    {
+        return program.getId();
+    }
+    
+    public UUID getChannelId()
+    {
+        return channel.getId();
+    }
 }

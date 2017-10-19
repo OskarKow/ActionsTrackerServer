@@ -39,5 +39,5 @@ public class Channel {
     @OneToMany(mappedBy = "channel")
     @Getter
     List<Broadcast> broadcasts = new ArrayList<>();
-    
+  
 }

@@ -2,6 +2,7 @@
 package com.oskar.kow.ActionsTrackerServer.services;
 
 import com.oskar.kow.ActionsTrackerServer.model.Channel;
+import com.oskar.kow.ActionsTrackerServer.model.Program;
 import java.util.List;
 import java.util.function.Function;
 import javax.persistence.EntityManager;
@@ -44,6 +45,8 @@ public class ChannelService extends EntityService<Channel>{
                 .setParameter("chName", name)
                 .getResultList();
     }
+    
+    
     
     
     @Transactional
