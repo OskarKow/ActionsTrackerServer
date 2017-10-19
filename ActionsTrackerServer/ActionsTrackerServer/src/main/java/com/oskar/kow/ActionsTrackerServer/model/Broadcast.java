@@ -1,8 +1,11 @@
 
 package com.oskar.kow.ActionsTrackerServer.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.oskar.kow.ActionsTrackerServer.services.ChannelService;
+import com.oskar.kow.ActionsTrackerServer.services.ProgramService;
+import com.oskar.kow.ActionsTrackerServer.services.exceptions.ChannelNotFoundException;
+import com.oskar.kow.ActionsTrackerServer.services.exceptions.ProgramNotFoundException;
+import static java.util.Objects.isNull;
 import java.util.UUID;
 import javax.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -36,26 +39,38 @@ public class Broadcast {
     
     //relation between channel and broadcast
     @ManyToOne
-    @Getter//(onMethod = @__( @JsonIgnore ))
     @Setter
     Channel channel;
     
     //relation between program and broadcast
     
     @ManyToOne
-    @Getter//(onMethod = @__( @JsonIgnore ))
     @Setter
     Program program;
     
-    public Program testTheProgram()
+    public void boundToProgram(ProgramService ps)
     {
-        return program;
+        UUID programID = program.getId();
+        Program broadcastProgram = ps.findById(programID);
+        if(isNull(broadcastProgram))
+        {
+            //Wrong program ID in broadcast
+            throw new ProgramNotFoundException();
+        }
+        //valid program ID
+        broadcastProgram.getBroadcasts().add(this);
     }
-    public Channel testTheChannel()
+    
+    public void boundToChannel(ChannelService cs)
     {
-        return channel;
+        UUID channelID = channel.getId();
+        Channel broadcastChannel = cs.findById(channelID);
+        if(isNull(broadcastChannel))
+        {
+            //Wrong channel ID in broadcast
+            throw new ChannelNotFoundException();
+        }
+        //valid channel
+        broadcastChannel.getBroadcasts().add(this);
     }
-    
-    
-    
 }
